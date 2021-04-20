@@ -18,7 +18,7 @@
       <div class="item"><a target="_blank" :href="url_zhihu"><img :src="img_url_zhihu" alt></a></div>
       <div class="item"><a target="_blank" :href="url_juejin"><img :src="img_url_juejin" style="height:38px;margin-bottom:6px;" alt></a></div>
     </div>
-    <div><el-button style="text-align:center;color:black" type="text" @click="hideAndShow()">Full Screen Or Not</el-button></div>
+    <div><el-button id="fullornot" type="text" @click="hideAndShow()">■■■■</el-button></div>
   </div>
 </template>
 
@@ -70,14 +70,16 @@ export default {
     },
     changeColor(){
       if(this.switchValue == '2'){
-        document.getElementById("date").style.color = "#000";
-        document.getElementById("time").style.color = "#000";
+        document.getElementById("fullornot").style.color = "rgb(255, 255, 255)";
+        document.getElementById("date").style.color = "rgb(0,0,0)";
+        document.getElementById("time").style.color = "rgb(0,0,0)";
         document.body.style.backgroundColor = "rgb(255, 255, 255)";
         this.img_url_github = require('@/assets/github2.svg')
       }else{
+        document.getElementById("fullornot").style.color = "rgb(0,0,0)";
         document.getElementById("date").style.color = "rgb(255, 255, 255)";
         document.getElementById("time").style.color = "rgb(255, 255, 255)";
-        document.body.style.backgroundColor = "#000";
+        document.body.style.backgroundColor = "rgb(0,0,0)";
         this.img_url_github = require('@/assets/github.svg')
       }
     },
@@ -151,5 +153,9 @@ export default {
   display: inline-block;
   margin-left:40px;
   margin-top:20px;
+}
+#fullornot{
+  text-align:center;
+  color:black
 }
 </style>
