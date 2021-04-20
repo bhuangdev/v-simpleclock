@@ -18,6 +18,7 @@
       <div class="item"><a target="_blank" :href="url_zhihu"><img :src="img_url_zhihu" alt></a></div>
       <div class="item"><a target="_blank" :href="url_juejin"><img :src="img_url_juejin" style="height:38px;margin-bottom:6px;" alt></a></div>
     </div>
+    <div><el-button style="text-align:center;color:black" type="text" @click="hideAndShow()">Full Screen Or Not</el-button></div>
   </div>
 </template>
 
@@ -36,7 +37,8 @@ export default {
       img_url_zhihu: require('@/assets/zhihu.svg'),
       img_url_bili: require('@/assets/bili.svg'),
       img_url_github: require('@/assets/github.svg'),
-      img_url_juejin: require('@/assets/juejin.svg')
+      img_url_juejin: require('@/assets/juejin.svg'),
+      fullState: false
     }
   },
   mounted(){
@@ -78,6 +80,49 @@ export default {
         document.body.style.backgroundColor = "#000";
         this.img_url_github = require('@/assets/github.svg')
       }
+    },
+    hideAndShow(){
+      if(this.fullState){
+        this.fullState = false;
+        this.cancelFullScreen();
+      }else {
+        this.fullState = true;
+        this.fullScreen();
+      }
+    },
+    fullScreen()  
+    {  
+      var docElm = document.documentElement;  
+      //W3C   
+      if (docElm.requestFullscreen) {  
+          docElm.requestFullscreen();  
+      }  
+          //FireFox   
+      else if (docElm.mozRequestFullScreen) {  
+          docElm.mozRequestFullScreen();  
+      }  
+          //Chrome等   
+      else if (docElm.webkitRequestFullScreen) {  
+          docElm.webkitRequestFullScreen();  
+      }  
+          //IE11   
+      else if (elem.msRequestFullscreen) {  
+          elem.msRequestFullscreen();  
+      }  
+    },
+    cancelFullScreen() {  
+      if (document.exitFullscreen) {  
+          document.exitFullscreen();  
+      }  
+      else if (document.mozCancelFullScreen) {  
+          document.mozCancelFullScreen();  
+      }  
+      else if (document.webkitCancelFullScreen) {  
+          document.webkitCancelFullScreen();  
+      }  
+      else if (document.msExitFullscreen) {  
+          document.msExitFullscreen();  
+      }  
     }
   }
 }
